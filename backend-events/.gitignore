@@ -1,0 +1,45 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+
+git remote add origin https://github.com/votre-nom-utilisateur/AnfaEvents.git
+git branch -M main
+git push -u origin main
+
+$ git remote add origin https://github.com/Chagrizakaria/AnfaEvents.git
+error: remote origin already exists.
+
+PC@DESKTOP-J7K30A7 MINGW64 ~/Desktop/Projects/projet/AnfaEvents (master)
+)
+origin  https://github.com/imadett88/IMY-PFA.git (push)

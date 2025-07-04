@@ -1,0 +1,166 @@
+<div class="create-event-page">
+  <div class="container py-5">
+    <!-- Page Header -->
+    <div class="page-header mb-5">
+      <div class="row align-items-center">
+        <div class="col-12 text-center">
+          <h1 class="page-title">Créer un nouvel événement</h1>
+          <p class="page-subtitle">Remplissez le formulaire pour créer un événement mémorable</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="event-form-card">
+          <form (ngSubmit)="onSubmit()" #eventForm="ngForm" class="event-form">
+            <!-- Form Sections Header -->
+            <div class="form-sections-header mb-4">
+              <div class="step active">
+                <div class="step-icon">
+                  <i class="fas fa-info-circle"></i>
+                </div>
+                <span>Informations</span>
+              </div>
+              <div class="step">
+                <div class="step-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <span>Localisation</span>
+              </div>
+              <div class="step">
+                <div class="step-icon">
+                  <i class="fas fa-image"></i>
+                </div>
+                <span>Médias</span>
+              </div>
+            </div>
+            
+            <!-- Section 1: Event Information -->
+            <div class="form-section active">
+              <h3 class="section-title"><i class="fas fa-info-circle me-2"></i>Informations de l'événement</h3>
+              
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <div class="form-floating mb-3">
+                    <input type="text" id="eventName" class="form-control" name="eventName" [(ngModel)]="event.eventName" required #eventName="ngModel" placeholder="Nom de l'événement">
+                    <label for="eventName"><i class="fas fa-tag me-2"></i>Nom de l'événement</label>
+                    <div *ngIf="eventName.invalid && (eventName.dirty || eventName.touched)" class="invalid-feedback d-block">
+                      Le nom de l'événement est requis.
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class="form-floating mb-3">
+                    <select id="eventCategory" class="form-select" name="eventCategory" [(ngModel)]="event.eventCategory" placeholder="Catégorie">
+                      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+                    </select>
+                    <label for="eventCategory"><i class="fas fa-th-list me-2"></i>Catégorie</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <div class="form-floating mb-3">
+                    <input type="date" id="eventDate" class="form-control" name="eventDate" [(ngModel)]="event.eventDate" required #eventDate="ngModel" placeholder="Date">
+                    <label for="eventDate"><i class="fas fa-calendar-alt me-2"></i>Date</label>
+                    <div *ngIf="eventDate.invalid && (eventDate.dirty || eventDate.touched)" class="invalid-feedback d-block">
+                      La date est requise.
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class="form-floating mb-3">
+                    <input type="number" id="eventPrice" class="form-control" name="eventPrice" [(ngModel)]="event.eventPrice" required #eventPrice="ngModel" placeholder="Prix">
+                    <label for="eventPrice"><i class="fas fa-money-bill-wave me-2"></i>Prix</label>
+                    <div *ngIf="eventPrice.invalid && (eventPrice.dirty || eventPrice.touched)" class="invalid-feedback d-block">
+                      Le prix est requis.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Section 2: Location -->
+            <div class="form-section">
+              <h3 class="section-title"><i class="fas fa-map-marker-alt me-2"></i>Localisation</h3>
+              
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <div class="form-floating mb-3">
+                    <input type="text" id="eventCity" class="form-control" name="eventCity" [(ngModel)]="event.eventCity" required #eventCity="ngModel" placeholder="Ville">
+                    <label for="eventCity"><i class="fas fa-city me-2"></i>Ville</label>
+                    <div *ngIf="eventCity.invalid && (eventCity.dirty || eventCity.touched)" class="invalid-feedback d-block">
+                      La ville est requise.
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class="form-floating mb-3">
+                    <input type="text" id="eventPlace" class="form-control" name="eventPlace" [(ngModel)]="event.eventPlace" required #eventPlace="ngModel" placeholder="Lieu">
+                    <label for="eventPlace"><i class="fas fa-map-pin me-2"></i>Lieu</label>
+                    <div *ngIf="eventPlace.invalid && (eventPlace.dirty || eventPlace.touched)" class="invalid-feedback d-block">
+                      Le lieu est requis.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Section 3: Media -->
+            <div class="form-section">
+              <h3 class="section-title"><i class="fas fa-image me-2"></i>Médias et description</h3>
+              
+              <div class="mb-4">
+                <div class="form-floating mb-3">
+                  <textarea id="eventDetails" class="form-control" name="eventDetails" [(ngModel)]="event.eventDetails" rows="5" required #eventDetails="ngModel" placeholder="Détails" style="height: 120px"></textarea>
+                  <label for="eventDetails"><i class="fas fa-align-left me-2"></i>Description détaillée</label>
+                  <div *ngIf="eventDetails.invalid && (eventDetails.dirty || eventDetails.touched)" class="invalid-feedback d-block">
+                    La description est requise.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mb-4">
+                <div class="image-upload-container">
+                  <label class="image-upload-label">
+                    <i class="fas fa-cloud-upload-alt me-2"></i>Image de l'événement
+                  </label>
+                  <div class="form-floating mb-3">
+                    <input type="text" id="imgUrl" class="form-control" name="imgUrl" [(ngModel)]="event.imgUrl" placeholder="URL de l'image">
+                    <label for="imgUrl"><i class="fas fa-link me-2"></i>URL de l'image</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Navigation and Submit -->
+            <div class="form-navigation">
+              <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <button type="button" class="btn btn-outline-primary prev-btn" id="prevBtn">
+                    <i class="fas fa-arrow-left me-2"></i>Précédent
+                  </button>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0 text-md-center">
+                  <button type="submit" class="btn btn-primary submit-btn" [disabled]="!eventForm.form.valid">
+                    <i class="fas fa-check-circle me-2"></i>Créer l'événement
+                  </button>
+                </div>
+                <div class="col-md-4 text-md-end">
+                  <button type="button" class="btn btn-outline-primary next-btn" id="nextBtn">
+                    Suivant<i class="fas fa-arrow-right ms-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

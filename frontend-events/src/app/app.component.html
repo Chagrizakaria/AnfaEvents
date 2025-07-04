@@ -1,0 +1,81 @@
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" (click)="navigateToHome()">
+      <img src="../assets/logo2.png" alt="Logo" class="custom-logo">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home" (click)="closeNavbar()">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/events" (click)="closeNavbar()">Événements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/services" (click)="closeNavbar()">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about" (click)="closeNavbar()">À Propos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact" (click)="closeNavbar()">Contact</a>
+        </li>
+      </ul>
+
+      <div class="d-flex align-items-center">
+        <form class="search-form" (ngSubmit)="handleSearch()">
+          <div class="search-container">
+            <input class="search-input" type="text" placeholder="Rechercher..." aria-label="Search" [(ngModel)]="searchQuery" name="searchQuery">
+            <button type="submit" class="search-button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
+        <ul class="navbar-nav">
+          <!-- Admin Link -->
+          <li class="nav-item" *ngIf="isAuthenticated() && hasRole('ADMIN')">
+            <a class="nav-link" routerLink="/create-event" (click)="closeNavbar()">Create Event</a>
+          </li>
+          <li class="nav-item" *ngIf="isAuthenticated() && hasRole('ADMIN')">
+            <a class="nav-link" routerLink="/admin/events" (click)="closeNavbar()">Manage Events</a>
+          </li>
+
+          <!-- Login Link -->
+          <li class="nav-item" *ngIf="!isAuthenticated()">
+            <a class="nav-link" routerLink="/login" (click)="closeNavbar()">Login</a>
+          </li>
+
+          <!-- User Dropdown -->
+          <li class="nav-item dropdown" *ngIf="isAuthenticated()">
+            <a class="nav-link dropdown-toggle user-dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="user-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <span class="username">{{ getUsername() }}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item logout-item" (click)="logout()">
+                <i class="fas fa-sign-out-alt me-2"></i> Se déconnecter
+              </a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="content-wrapper">
+  <router-outlet></router-outlet>
+</div>

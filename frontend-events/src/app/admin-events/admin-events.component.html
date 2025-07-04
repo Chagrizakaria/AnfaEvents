@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <h2>Admin - Manage Events</h2>
+
+  <div class="d-flex justify-content-between mb-3">
+    <div class="form-group flex-grow-1 mr-3">
+      <input type="text" class="form-control" placeholder="Search by event name, city, or place..." [(ngModel)]="searchQuery" (ngModelChange)="onSearchChange()">
+    </div>
+    <button class="btn btn-danger" [disabled]="selectedEventIds.size === 0" (click)="deleteSelectedEvents()">
+      Delete Selected ({{selectedEventIds.size}})
+    </button>
+  </div>
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>
+          <input type="checkbox" (change)="onSelectAllChange($event)">
+        </th>
+        <th>Event Name</th>
+        <th>Category</th>
+        <th>City</th>
+        <th>Date</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of filteredEvents" [class.selected]="isSelected(event.enventId)">
+        <td>
+          <input type="checkbox" [checked]="isSelected(event.enventId)" (change)="onCheckboxChange($event, event.enventId)">
+        </td>
+        <td>{{ event.eventName }}</td>
+        <td>{{ event.eventCategory }}</td>
+        <td>{{ event.eventCity }}</td>
+        <td>{{ event.eventDate | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ event.eventPrice }} MAD</td>
+        <td>
+          <button class="btn btn-primary btn-sm mr-2" (click)="editEvent(event.enventId)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteEvent(event.enventId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

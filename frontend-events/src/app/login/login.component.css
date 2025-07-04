@@ -1,0 +1,256 @@
+/* Modern Login Page Styling */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  font-family: 'Poppins', sans-serif;
+  padding: 2rem 0;
+}
+
+.container {
+  width: 100%;
+  padding: 0 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.col-md-6 {
+  width: 100%;
+}
+
+/* Tailles spécifiques selon les breakpoints */
+@media (min-width: 768px) {
+  .col-md-6 {
+    max-width: 450px;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-md-6 {
+    max-width: 400px;
+  }
+}
+
+.login-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(18, 87, 61, 0.1);
+  padding: 2.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.logo-circle {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #12573d 0%, #1a7956 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -60px;
+  box-shadow: 0 5px 15px rgba(18, 87, 61, 0.3);
+}
+
+.logo-circle i {
+  font-size: 2.5rem;
+  color: #ffffff;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #12573d;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 2rem;
+}
+
+/* Form Controls */
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  color: #12573d;
+  z-index: 10;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 2.5rem;
+  font-size: 1rem;
+  border: 1px solid #e4e8f0;
+  border-radius: 30px;
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #12573d;
+  box-shadow: 0 0 0 0.2rem rgba(18, 87, 61, 0.15);
+  background-color: #fff;
+}
+
+.form-control::placeholder {
+  color: #adb5bd;
+  font-weight: 300;
+}
+
+/* Login Button */
+.login-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: linear-gradient(135deg, #12573d 0%, #1a7956 100%);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  margin: 2rem 0 1rem;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(18, 87, 61, 0.3);
+}
+
+.login-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(18, 87, 61, 0.4);
+  background: linear-gradient(135deg, #1a7956 0%, #12573d 100%);
+}
+
+.login-btn:active {
+  transform: translateY(-1px);
+}
+
+.login-btn i {
+  transition: transform 0.3s ease;
+}
+
+.login-btn:hover i {
+  transform: translateX(5px);
+}
+
+/* Register Link */
+.register-link {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.register-link a {
+  color: #12573d;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.register-link a:hover {
+  color: #1a7956;
+  text-decoration: underline;
+}
+/* Responsive styles */
+@media (max-width: 992px) {
+  .login-card {
+    padding: 2rem;
+  }
+  
+  .logo-circle {
+    width: 70px;
+    height: 70px;
+    margin-top: -50px;
+  }
+  
+  .logo-circle i {
+    font-size: 2rem;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-page {
+    padding: 1.5rem 0;
+  }
+  
+  .login-card {
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(18, 87, 61, 0.1);
+  }
+  
+  .form-control {
+    padding: 0.7rem 1rem 0.7rem 2.5rem;
+  }
+  
+  .login-btn {
+    padding: 0.7rem;
+    margin: 1.5rem 0 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo-circle {
+    width: 60px;
+    height: 60px;
+    margin-top: -40px;
+  }
+  
+  .logo-circle i {
+    font-size: 1.8rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-control {
+    font-size: 0.9rem;
+  }
+  
+  .login-btn {
+    font-size: 0.9rem;
+  }
+  
+  .register-link {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,71 @@
+<div class="hero-section">
+  <!-- Video background with overlay -->
+  <div class="video-container">
+    <div #videosContainer>
+      <video *ngFor="let video of videos; let i = index" autoplay loop muted playsinline [hidden]="selectedVideoIndex !== i"
+        class="back-video">
+        <source [src]="video.src" type="video/mp4">
+      </video>
+    </div>
+    <div class="overlay"></div>
+  </div>
+
+  <!-- Hero content -->
+  <div class="hero-content">
+    <div class="tagline">Votre partenaire d'événements</div>
+    <h1 class="main-title">Anfa<span>Events</span></h1>
+    <p class="hero-description">Découvrez des expériences événementielles inoubliables</p>
+    
+    <div class="hero-buttons">
+      <button class="primary-btn" (click)="onTrouverClick()">
+        <span>Découvrir</span>
+        <i class="fas fa-arrow-right"></i>
+      </button>
+      <button class="secondary-btn" (click)="navigateToServices()">
+        <span>Nos Services</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Slider caption -->
+  <div class="slider-caption">
+    <h2 id="slide-title">{{ slides[selectedVideoIndex].title }}</h2>
+    <div id="slide-status" class="caption-status">{{ slides[selectedVideoIndex].status }}</div>
+  </div>
+
+  <!-- Custom pagination -->
+  <div class="custom-pagination">
+    <div class="pagination-wrapper">
+      <button *ngFor="let slide of slides; let i = index" 
+        [class.active]="selectedVideoIndex === i"
+        (click)="selectVideo(i)" 
+        [attr.data-slide]="i">
+        <span class="dot"></span>
+        <span class="label">{{slide.title}}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator" (click)="scrollToFeatures()">
+    <div class="mouse">
+      <div class="wheel"></div>
+    </div>
+    <div class="scroll-text">Défiler</div>
+  </div>
+</div>
+
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Prêt à Organiser Votre Prochain Événement?</h2>
+      <p>Rejoignez les milliers d'organisateurs qui font confiance à AnfaEvents</p>
+      <button class="cta-button" (click)="onTrouverClick()">
+        <span>Commencer Maintenant</span>
+        <i class="fas fa-rocket"></i>
+      </button>
+    </div>
+  </div>
+</section>

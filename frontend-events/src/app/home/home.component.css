@@ -1,0 +1,500 @@
+:host {
+  /* This override removes the global padding specifically for the home page,
+     allowing the video background to fill the entire screen. */
+  display: block;
+  margin: -2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Hero Section Styles */
+.hero-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content h1 {
+  color: #d1c935;
+  font-size: 5rem; /* Make the title larger */
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow for readability */
+}
+
+.title-word {
+  animation: color-animation 4s linear infinite;
+}
+
+.title-word-1 {
+  --color-1: #212529;
+  --color-2: #3D8DAE;
+  --color-3: #010101;
+}
+
+.title-word-2 {
+  --color-1: #193043;
+  --color-2: #ACCFCB;
+  --color-3: #17494D;
+}
+
+@keyframes color-animation {
+  0%    {color: var(--color-1)}
+  32%   {color: var(--color-1)}
+  33%   {color: var(--color-2)}  65%   {color: var(--color-2)}
+  66%   {color: var(--color-3)}
+  99%   {color: var(--color-3)}
+  100%  {color: var(--color-1)}
+}
+
+/* Video Background Styles */
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.back-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(18, 87, 61, 0.7));
+  z-index: 2;
+}
+
+/* Slider Caption Styles */
+.slider-caption {
+  position: absolute;
+  bottom: 25%;
+  left: 10%;
+  z-index: 10;
+  color: #fff;
+  text-align: left;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 1s;
+}
+
+#slide-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #d1c935;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.caption-status {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Custom Pagination Styles */
+.custom-pagination {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.pagination-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.custom-pagination button {
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.5;
+}
+
+.custom-pagination button .dot {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.custom-pagination button .label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateX(-10px);
+  white-space: nowrap;
+}
+
+.custom-pagination button.active {
+  opacity: 1;
+}
+
+.custom-pagination button.active .dot {
+  background-color: #d1c935;
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(209, 201, 53, 0.5);
+}
+
+.custom-pagination button.active .label {
+  opacity: 1;
+  transform: translateX(0);
+  color: #fff;
+}
+
+.custom-pagination button:hover {
+  opacity: 1;
+}
+
+.custom-pagination button:hover .label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Hero Content Styles */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 1000px;
+  padding: 0 2rem;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.2s;
+}
+
+.main-title {
+  font-size: 6rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  line-height: 1;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.4s;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.main-title span {
+  color: #d1c935;
+  position: relative;
+}
+
+.main-title span::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: #d1c935;
+  border-radius: 5px;
+}
+
+.hero-description {
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 650px;
+  margin: 0 auto 2.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content a {
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  font-size: 24px;
+  border: 2px solid #fff;
+  padding: 14px 70px;
+  border-radius: 50px;
+  margin-top: 20px;
+}
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Button Styles */
+.primary-btn, .secondary-btn, .cta-button {
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.primary-btn {
+  background: #12573d;
+  color: #fff;
+  border: none;
+  box-shadow: 0 10px 20px rgba(18, 87, 61, 0.3);
+}
+
+.primary-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: #d1c935;
+  transition: height 0.3s ease;
+  z-index: 0;
+}
+
+.primary-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(18, 87, 61, 0.4);
+}
+
+.primary-btn:hover::after {
+  height: 100%;
+  transition: height 0.3s ease;
+}
+
+.primary-btn span, .primary-btn i {
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.primary-btn:hover span, .primary-btn:hover i {
+  color: #12573d;
+}
+
+.primary-btn:hover i {
+  transform: translateX(5px);
+}
+
+.secondary-btn {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+  transform: translateY(-5px);
+}
+
+
+
+
+
+/* Container shared by multiple sections */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* CTA Section Styles */
+.cta-section {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, rgba(18, 87, 61, 0.9), rgba(13, 63, 45, 0.95)), 
+              url('../../assets/evn.jpg') center/cover no-repeat fixed;
+  position: relative;
+}
+
+.cta-content {
+  text-align: center;
+  color: #fff;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(18, 87, 61, 0.8);
+  z-index: 0;
+}
+
+.cta-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
+
+.cta-button {
+  background-color: #d1c935;
+  color: #12573d;
+  border: none;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cta-button:hover {
+  background-color: #fff;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.cta-button i {
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover i {
+  transform: translateX(5px) rotate(10deg);
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .main-title {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .main-title {
+    font-size: 4rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .slider-caption {
+    left: 5%;
+    bottom: 20%;
+  }
+  
+  .custom-pagination {
+    right: 3%;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 3.5rem;
+  }
+  
+  .hero-description {
+    font-size: 1.2rem;
+  }
+  
+  .custom-pagination {
+    display: none;
+  }
+  
+  .slider-caption {
+    text-align: center;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .cta-content h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .main-title {
+    font-size: 2.5rem;
+  }
+  
+  .tagline {
+    font-size: 1rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .scroll-indicator {
+    display: none;
+  }
+}

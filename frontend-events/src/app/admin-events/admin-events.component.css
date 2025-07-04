@@ -1,0 +1,34 @@
+/* Add some spacing and alignment for the container */
+.container {
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Style the table for better readability */
+.table {
+  margin-top: 20px;
+}
+
+.btn-sm {
+  margin-right: 5px;
+}
+
+.mr-2 {
+    margin-right: .5rem!important;
+}
+
+/* Make checkboxes larger for easier clicking */
+input[type="checkbox"] {
+  transform: scale(1.5);
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+/* Add a background color to selected rows for better visibility */
+tr.selected {
+  background-color: #e8f0fe; /* A light blue color */
+}
