@@ -9,7 +9,7 @@ COPY pom.xml .
 # Add a cache-busting argument
 ARG CACHE_BUSTER=1
 
-RUN mvn dependency:go-offline --no-cache
+RUN mvn dependency:go-offline
 
 # Copy the rest of the source code
 COPY src ./src
