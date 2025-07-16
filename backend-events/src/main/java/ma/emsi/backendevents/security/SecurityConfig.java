@@ -65,8 +65,9 @@ public class SecurityConfig {
                 .csrf(csrf->csrf.disable())
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(ar -> ar
+                        .requestMatchers("/actuator/health").permitAll() // Allow health checks
                         .requestMatchers("/auth/**").permitAll()
-.requestMatchers(HttpMethod.POST, "/api/events").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/events").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/events").permitAll()
                         .anyRequest().authenticated()
                 )
