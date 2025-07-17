@@ -45,10 +45,12 @@ public class SecurityController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(@RequestBody RegisterRequest loginRequest) {
+    public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> loginRequest) {
         try {
+            String email = loginRequest.get("email");
+            String password = loginRequest.get("password");
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
+                    new UsernamePasswordAuthenticationToken(email, password)
             );
 
             Instant instant = Instant.now();
@@ -59,7 +61,7 @@ public class SecurityController {
             JwtClaimsSet jwtClaimsSet = JwtClaimsSet.builder()
                     .issuedAt(instant)
                     .expiresAt(instant.plus(10, ChronoUnit.DAYS))
-                    .subject(loginRequest.getEmail())
+                    .subject(loginRequest.get("email"))
                     .claim("scope", scope)
                     .build();
 
