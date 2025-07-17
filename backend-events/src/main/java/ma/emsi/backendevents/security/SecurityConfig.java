@@ -79,7 +79,6 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())))
-                .httpBasic(Customizer.withDefaults())
                 .build();
     }
 
@@ -99,6 +98,7 @@ public class SecurityConfig {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+        daoAuthenticationProvider.setHideUserNotFoundExceptions(false);
         return new ProviderManager(daoAuthenticationProvider);
     }
 
