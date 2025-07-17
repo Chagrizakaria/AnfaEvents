@@ -16,11 +16,6 @@ public class EventsController {
 
     @Autowired private EventsServiceImp eventsServiceImp;
 
-    @GetMapping
-    public ResponseEntity<List<Events>> getAllEvents(){
-        List<Events> events = eventsServiceImp.getAllEvents();
-        return new ResponseEntity<>(events, HttpStatus.OK);
-    }
 
     @GetMapping("/{eventId}")
     public ResponseEntity<Events> getEventById(@PathVariable Long eventId) {
