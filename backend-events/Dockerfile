@@ -30,4 +30,4 @@ COPY --from=build /app/target/backend-events-0.0.1-SNAPSHOT.jar /app/backend-eve
 EXPOSE 7700
 
 # Specify the command to run on container startup
-CMD ["sh", "-c", "echo 'Waiting for database to start...' && sleep 10 && java -jar /app/backend-events.jar"]
+CMD ["java", "-jar", "/app/backend-events.jar"]
