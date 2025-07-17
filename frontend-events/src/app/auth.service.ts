@@ -40,8 +40,13 @@ export class AuthService {
   }
 
   public login(email: string, password: string): Observable<any> {
-    const body = { email, password };
-    return this.http.post(`${this.baseUrl}/login`, body);
+    let httpParams = new HttpParams()
+      .set('username', email)
+      .set('password', password);
+
+    return this.http.post(`${this.baseUrl}/login`, httpParams, {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    });
   }
   
   
