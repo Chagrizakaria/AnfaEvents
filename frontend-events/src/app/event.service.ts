@@ -9,11 +9,12 @@ import { environment } from '../environments/environment';
 })
 export class EventService {
   private apiUrl = `${environment.apiUrl}/api/events`;
+  private publicApiUrl = `${environment.apiUrl}/api/public/events`;
 
   constructor(private http:HttpClient) { }
 
   getAllEvents(): Observable<any>{
-    return this.http.get(this.apiUrl)
+    return this.http.get(this.publicApiUrl)
   }
 
   getEventById(eventId:number): Observable<any>{
