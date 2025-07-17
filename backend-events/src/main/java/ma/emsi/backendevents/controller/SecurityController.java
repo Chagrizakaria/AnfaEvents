@@ -27,17 +27,17 @@ import java.util.stream.Collectors;
 @RequestMapping("/auth")
 public class SecurityController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+    private final JwtEncoder jwtEncoder;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private JwtEncoder jwtEncoder;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public SecurityController(AuthenticationManager authenticationManager, JwtEncoder jwtEncoder, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.authenticationManager = authenticationManager;
+        this.jwtEncoder = jwtEncoder;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @GetMapping("/profile")
     public Authentication authentication(Authentication authentication){
