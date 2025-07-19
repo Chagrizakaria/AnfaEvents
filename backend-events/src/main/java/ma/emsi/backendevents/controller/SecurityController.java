@@ -46,13 +46,25 @@ public class SecurityController {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> loginRequest) {
+        System.out.println("Login attempt received: " + loginRequest);
+        
         try {
+            // Extract credentials
             String email = loginRequest.get("email");
             String password = loginRequest.get("password");
+            
+            System.out.println("Attempting authentication for email: " + email);
+            System.out.println("Password length: " + (password != null ? password.length() : "null"));
+            
+            // Try authentication
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(email, password)
             );
+            
+            System.out.println("Authentication successful for: " + email);
+            System.out.println("Authorities: " + authentication.getAuthorities());
 
+            // Generate JWT token
             Instant instant = Instant.now();
             String scope = authentication.getAuthorities().stream()
                     .map(GrantedAuthority::getAuthority)
@@ -61,23 +73,40 @@ public class SecurityController {
             JwtClaimsSet jwtClaimsSet = JwtClaimsSet.builder()
                     .issuedAt(instant)
                     .expiresAt(instant.plus(10, ChronoUnit.DAYS))
-                    .subject(loginRequest.get("email"))
+                    .subject(email)
                     .claim("scope", scope)
                     .build();
+            
+            System.out.println("JWT claims created: " + jwtClaimsSet.getClaims());
 
+            // Encode the token
             String jwt = jwtEncoder.encode(JwtEncoderParameters.from(
                     JwsHeader.with(MacAlgorithm.HS512).build(),
                     jwtClaimsSet
             )).getTokenValue();
+            
+            System.out.println("JWT token generated, length: " + jwt.length());
 
+            // Return the token
             Map<String, String> response = new HashMap<>();
             response.put("access-token", jwt);
+            System.out.println("Login successful, returning token");
             return ResponseEntity.ok(response);
 
         } catch (AuthenticationException e) {
+            System.err.println("Authentication failed: " + e.getMessage());
+            e.printStackTrace();
+            
             Map<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("message", "Invalid username or password");
+            errorResponse.put("message", "Authentication failed: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+        } catch (Exception e) {
+            System.err.println("Unexpected error during login: " + e.getMessage());
+            e.printStackTrace();
+            
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("message", "Server error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
     }
 

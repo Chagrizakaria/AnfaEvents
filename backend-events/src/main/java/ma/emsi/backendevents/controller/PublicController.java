@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/public")
@@ -24,5 +26,14 @@ public class PublicController {
     public ResponseEntity<List<Events>> getAllEvents(){
         List<Events> events = eventsServiceImp.getAllEvents();
         return new ResponseEntity<>(events, HttpStatus.OK);
+    }
+    
+    @GetMapping("/status")
+    public ResponseEntity<Map<String, String>> getApiStatus() {
+        Map<String, String> status = new HashMap<>();
+        status.put("status", "online");
+        status.put("message", "AnfaEvents API is running");
+        status.put("version", "1.0.0");
+        return ResponseEntity.ok(status);
     }
 }

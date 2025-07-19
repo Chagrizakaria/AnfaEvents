@@ -57,6 +57,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/").permitAll()
                         .requestMatchers("/auth/**", "/api/public/**", "/actuator/health").permitAll()
                         .anyRequest().authenticated()
                 )
@@ -71,6 +72,7 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(Arrays.asList(
             "http://localhost:4200", 
             "https://playful-dieffenbachia-52377e.netlify.app",
+            "https://anfaevents.netlify.app",
             "null"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
