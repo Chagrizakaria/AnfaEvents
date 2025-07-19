@@ -67,16 +67,16 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Include all your frontend URLs here
+        // Include null origin to allow requests from local HTML files
         configuration.setAllowedOrigins(Arrays.asList(
             "http://localhost:4200", 
             "https://playful-dieffenbachia-52377e.netlify.app",
-            "https://anfaevents.netlify.app"
+            "null"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept", "Origin", "Content-Length"));
-        configuration.setAllowCredentials(true);
-        configuration.setMaxAge(3600L); // 1 hour
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept"));
+        // Don't set allowCredentials to true when using null origin
+        configuration.setAllowCredentials(false);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
