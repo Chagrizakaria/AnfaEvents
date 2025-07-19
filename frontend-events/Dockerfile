@@ -13,14 +13,17 @@ RUN npm install
 # Copy the entire project to the working directory
 COPY . .
 
-# Build the Angular app
-RUN npm run build --prod
+# Build the Angular app for production
+RUN npm run build -- --configuration production
 
 # Use NGINX as the production server
 FROM nginx:latest
 
 # Copy the built artifacts from the builder stage to the NGINX public directory
 COPY --from=builder /app/dist/frontend-events /usr/share/nginx/html
+
+# Copy custom nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
 EXPOSE 80

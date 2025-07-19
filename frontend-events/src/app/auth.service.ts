@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -40,8 +41,31 @@ export class AuthService {
   }
 
   public login(email: string, password: string): Observable<any> {
+    // Create the request body exactly as expected by the backend
     const body = { email, password };
-    return this.http.post(`${this.baseUrl}/login`, body);
+    console.log('Login request to URL:', `${this.baseUrl}/login`);
+    console.log('Login request body:', JSON.stringify(body));
+    
+    // Add explicit headers to ensure content type is set correctly
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    
+    return this.http.post(`${this.baseUrl}/login`, body, { headers })
+      .pipe(
+        tap(
+          (response: any) => console.log('Login response:', response),
+          (error: any) => {
+            console.error('Login error details:', {
+              status: error.status,
+              statusText: error.statusText,
+              error: error.error,
+              message: error.message,
+              url: error.url
+            });
+          }
+        )
+      );
   }
   
   
