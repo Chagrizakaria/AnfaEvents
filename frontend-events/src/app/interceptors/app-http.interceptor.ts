@@ -14,14 +14,20 @@ export class AppHttpInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    // Check if the request is for a public route (login or register)
-    if (request.url.includes("/auth/login") || request.url.includes("/auth/register")) {
-      // If it is, pass the request through without modification
+    console.log('Intercepting request to:', request.url);
+    
+    // More robust check for auth endpoints
+    if (request.url.indexOf('/auth/login') !== -1 || 
+        request.url.indexOf('/auth/register') !== -1 ||
+        request.url.endsWith('/auth/login') || 
+        request.url.endsWith('/auth/register')) {
+      console.log('Public auth route detected, skipping token');
       return next.handle(request);
     }
 
     // For all other (protected) routes, add the Authorization header
     if (this.authService.accessToken) {
+      console.log('Adding auth token to request');
       const newRequest = request.clone({
         headers: request.headers.set('Authorization', 'Bearer ' + this.authService.accessToken)
       });
@@ -29,6 +35,7 @@ export class AppHttpInterceptor implements HttpInterceptor {
     }
     
     // If there's no token, pass the original request through
+    console.log('No token available, passing request through');
     return next.handle(request);
 
   }
