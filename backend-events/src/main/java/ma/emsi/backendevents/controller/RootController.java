@@ -1,6 +1,7 @@
 package ma.emsi.backendevents.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,7 @@ import java.util.Map;
  * Controller to handle requests to the root path of the API
  */
 @RestController
+@CrossOrigin(origins = "*") // Allow requests from any origin
 public class RootController {
 
     /**
@@ -23,6 +25,7 @@ public class RootController {
         response.put("status", "online");
         response.put("message", "Welcome to AnfaEvents API");
         response.put("documentation", "/api/public/status");
+        response.put("timestamp", String.valueOf(System.currentTimeMillis()));
         return ResponseEntity.ok(response);
     }
 }
