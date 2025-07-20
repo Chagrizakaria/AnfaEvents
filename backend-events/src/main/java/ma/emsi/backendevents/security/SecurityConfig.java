@@ -77,6 +77,7 @@ public class SecurityConfig {
             "http://localhost:4200", 
             "https://playful-dieffenbachia-52377e.netlify.app",
             "https://anfaevents.netlify.app",
+            "https://splendid-solace-production.up.railway.app",
             "null"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
