@@ -16,12 +16,13 @@ export class AppHttpInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     console.log('Intercepting request to:', request.url);
     
-    // More robust check for auth endpoints
+    // More robust check for public endpoints
     if (request.url.indexOf('/auth/login') !== -1 || 
         request.url.indexOf('/auth/register') !== -1 ||
+        request.url.indexOf('/api/public') !== -1 ||
         request.url.endsWith('/auth/login') || 
         request.url.endsWith('/auth/register')) {
-      console.log('Public auth route detected, skipping token');
+      console.log('Public route detected, skipping token');
       return next.handle(request);
     }
 

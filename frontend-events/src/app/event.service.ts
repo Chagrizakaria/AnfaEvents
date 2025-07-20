@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 
@@ -14,7 +15,14 @@ export class EventService {
   constructor(private http:HttpClient) { }
 
   getAllEvents(): Observable<any>{
+    console.log('Calling getAllEvents API at:', this.publicApiUrl);
     return this.http.get(this.publicApiUrl)
+      .pipe(
+        tap(
+          (response) => console.log('Events API response:', response),
+          (error) => console.error('Events API error:', error)
+        )
+      );
   }
 
   getEventById(eventId:number): Observable<any>{
